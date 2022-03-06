@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Students</h1>
+<ul>
+    {% for student in students %}
+    <li>{{student.email}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
