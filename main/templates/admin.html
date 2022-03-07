@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Admin</h1>
+
+<h2>Cohorts</h2>
+<ul>
+    {% for cohort in cohorts %}
+        <li><input type="text" value="{{cohort.name}}"></li>
+    {% endfor %}
+    <div><input type="text" id="new_cohort" class="new_input"></div>
+</ul>
+<a href="">+ Add Cohort</a>
+
+<h2>Genders</h2>
+<ul>
+    {% for gender in genders %}
+        <li>{{gender.name}}</li>
+    {% endfor %}
+</ul>
+<a href="">+ Gender</a>
+
+<h2>Race & Ethnicities</h2>
+<ul>
+    {% for re in race_ethnicity %}
+        <li>{{re.name}}</li>
+    {% endfor %}
+</ul>
+
+<h2>How You Heard About Us</h2>
+<ul>
+    {% for hau in hear_about_us %}
+        <li>{{hau.name}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

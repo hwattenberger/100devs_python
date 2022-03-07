@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Assignments</h1>
+<a href="{% url 'assignment-create' %}">Create</a>
+<ul>
+    {% for assignment in assignments %}
+    <li>{{assignment.name}} <a href="{% url 'assignment-edit' assignment.id %}">Edit</a></li>
+    
+    {% endfor %}
+</ul>
+
+{% endblock content %}

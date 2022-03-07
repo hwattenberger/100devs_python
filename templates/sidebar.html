@@ -1,0 +1,10 @@
+{% load static %}
+<nav>
+    <div><img src="{% static 'images/logo.svg' %}" ></div>
+    <ul>
+        <li class="navLink"><a href="{% url 'students' %}">Dashboard</a></li>
+        <li class="navLink"><a href="{% url 'students' %}">Students</a></li>
+        <li class="navLink"><a href="{% url 'assignments' %}">Assignments</a></li>
+        <li class="navLink"><a href="{% url 'admin' %}">Admin</a></li>
+    </ul>
+</nav>
