@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs
+from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment
 from .forms import StudentForm, AssignmentForm
 
 # Create your views here.
@@ -97,3 +97,66 @@ def assignment_create(request):
         "form": form
     }
     return render(request, 'assignment_create.html', context)
+
+def admin_cohort(request):
+    if request.method == "POST":
+        name=request.POST.get('name')
+        if name:
+            Cohort.objects.create(
+                name=name
+            )
+        else:
+            return HttpResponse("Not a valid name")
+
+    return redirect('admin')
+
+def admin_race_eth(request):
+    if request.method == "POST":
+        name=request.POST.get('name')
+        if name:
+            RaceEthnicity.objects.create(
+                name=name
+            )
+        else:
+            return HttpResponse("Not a valid name")
+
+    return redirect('admin') 
+
+def admin_gender(request):
+    if request.method == "POST":
+        name=request.POST.get('name')
+        if name:
+            Gender.objects.create(
+                name=name
+            )
+        else:
+            return HttpResponse("Not a valid name")
+
+    return redirect('admin') 
+
+def admin_heard(request):
+    if request.method == "POST":
+        name=request.POST.get('name')
+        if name:
+            HearAboutUs.objects.create(
+                name=name
+            )
+        else:
+            return HttpResponse("Not a valid name")
+
+    return redirect('admin')
+
+def submit_assignment(request):
+    if request.method == "POST":
+        email=request.POST.get('email')
+        assignment=request.POST.get('assignment')
+
+        StudentAssignment.objects.create(
+            name=name
+        )
+        return redirect('admin') 
+        
+    context = {
+        "assignments": assignments
+    }
+    return render(request, 'assignment-turnin.html', context)

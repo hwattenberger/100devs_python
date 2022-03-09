@@ -11,4 +11,8 @@ urlpatterns = [
     path('assignments/create/', views.assignment_create, name="assignment-create"),
     path('assignments/edit/<str:assignment_id>/', views.assignment_edit, name="assignment-edit"),
     path('100devs/admin/', views.admin, name="admin"),
+    path('100devs/admin/create-cohort', views.admin_cohort, name="admin-cohort-create"),
+    path('100devs/admin/create-gender', views.admin_gender, name="admin-gender-create"),
+    path('100devs/admin/create-race', views.admin_race_eth, name="admin-race-create"),
+    path('100devs/admin/create-heard', views.admin_heard, name="admin-heard-create"),
 ]

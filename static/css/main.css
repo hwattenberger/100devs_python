@@ -46,5 +46,15 @@ main {
 }
 
 .new_input {
-    display: none;
+    /* display: none; */
+}
+
+.adminCategory input {
+    margin: .25rem;
+    padding: .25rem;
+    width: 20rem;
+}
+
+.adminCategory h2 {
+    margin-bottom: .24rem;
 }

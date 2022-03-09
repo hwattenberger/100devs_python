@@ -3,35 +3,70 @@
 {% block content %}
 <h1>Admin</h1>
 
-<h2>Cohorts</h2>
-<ul>
-    {% for cohort in cohorts %}
-        <li><input type="text" value="{{cohort.name}}"></li>
-    {% endfor %}
-    <div><input type="text" id="new_cohort" class="new_input"></div>
-</ul>
-<a href="">+ Add Cohort</a>
+<section class="adminCategory">
+    <h2>Cohorts</h2>
+    <ul>
+        {% for cohort in cohorts %}
+            <li><input type="text" value="{{cohort.name}}" readonly></li>
+        {% endfor %}
+        <div>
+            <form action="/100devs/admin/create-cohort" method="POST">
+                {% csrf_token %}
+                <input type="text" id="new_cohort" name="name" class="new_input" placeholder="Add cohort">
+                <button>Add</button>
+            </form>
+        </div>
+    </ul>
+    <!-- <a href="">+ Add Cohort</a> -->
+</section>
 
-<h2>Genders</h2>
-<ul>
-    {% for gender in genders %}
-        <li>{{gender.name}}</li>
-    {% endfor %}
-</ul>
-<a href="">+ Gender</a>
+<section class="adminCategory">
+    <h2>Genders</h2>
+    <ul>
+        {% for gender in genders %}
+            <li><input type="text" value="{{gender.name}}" readonly></li>
+        {% endfor %}
+        <div>
+            <form action="/100devs/admin/create-gender" method="POST">
+                {% csrf_token %}
+                <input type="text" id="new_gender" name="name" class="new_input" placeholder="Add gender">
+                <button>Add</button>
+            </form>
+        </div>
+    </ul>
+    <!-- <a href="">+ Gender</a> -->
+</section>
 
-<h2>Race & Ethnicities</h2>
-<ul>
-    {% for re in race_ethnicity %}
-        <li>{{re.name}}</li>
-    {% endfor %}
-</ul>
+<section class="adminCategory">
+    <h2>Race & Ethnicities</h2>
+    <ul>
+        {% for re in race_ethnicity %}
+            <li><input type="text" value="{{re.name}}" readonly></li>
+        {% endfor %}
+        <div>
+            <form action="/100devs/admin/create-race" method="POST">
+                {% csrf_token %}
+                <input type="text" id="new_race_eth" name="name" class="new_input" placeholder="Add race/ethnicity">
+                <button>Add</button>
+            </form>
+        </div>
+    </ul>
+</section>
 
-<h2>How You Heard About Us</h2>
-<ul>
-    {% for hau in hear_about_us %}
-        <li>{{hau.name}}</li>
-    {% endfor %}
-</ul>
+<section class="adminCategory">
+    <h2>How You Heard About Us</h2>
+    <ul>
+        {% for hau in hear_about_us %}
+            <li><input type="text" value="{{hau.name}}" readonly></li>
+        {% endfor %}
+        <div>
+            <form action="/100devs/admin/create-heard" method="POST">
+                {% csrf_token %}
+                <input type="text" id="new_heard" name="name" class="new_input" placeholder="Add how you heard about us">
+                <button>Add</button>
+            </form>
+        </div>
+    </ul>
+</section>
 
 {% endblock content %}
