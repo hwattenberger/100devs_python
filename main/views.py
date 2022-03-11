@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+import json
 
 from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment
 from .forms import StudentForm, AssignmentForm
@@ -107,6 +108,20 @@ def admin_cohort(request):
             )
         else:
             return HttpResponse("Not a valid name")
+
+    return redirect('admin')
+
+def admin_cohort_edit(request, id):
+    data_from_post = json.load(request)['test']
+    # if request.method == "POST":
+        # name=request.POST.get('name')
+        # if name:
+        #     Cohort.objects.create(
+        #         name=name
+        #     )
+        # else:
+    return HttpResponse(data_from_post)
+        # return HttpResponse("Success")
 
     return redirect('admin')
 

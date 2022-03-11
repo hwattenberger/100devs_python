@@ -1,5 +1,7 @@
 {% extends 'main.html' %}
 
+{% load static %}
+
 {% block content %}
 <h1>Admin</h1>
 
@@ -7,10 +9,10 @@
     <h2>Cohorts</h2>
     <ul>
         {% for cohort in cohorts %}
-            <li><input type="text" value="{{cohort.name}}" readonly></li>
+            <li id="cohort-{{ cohort.id }}"><input type="text" value="{{cohort.name}}" class="editInput" readonly><span class="adminEdit">Edit</span></li>
         {% endfor %}
         <div>
-            <form action="/100devs/admin/create-cohort" method="POST">
+            <form action="/100devs/admin/create-cohort/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="new_cohort" name="name" class="new_input" placeholder="Add cohort">
                 <button>Add</button>
@@ -27,7 +29,7 @@
             <li><input type="text" value="{{gender.name}}" readonly></li>
         {% endfor %}
         <div>
-            <form action="/100devs/admin/create-gender" method="POST">
+            <form action="/100devs/admin/create-gender/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="new_gender" name="name" class="new_input" placeholder="Add gender">
                 <button>Add</button>
@@ -44,7 +46,7 @@
             <li><input type="text" value="{{re.name}}" readonly></li>
         {% endfor %}
         <div>
-            <form action="/100devs/admin/create-race" method="POST">
+            <form action="/100devs/admin/create-race/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="new_race_eth" name="name" class="new_input" placeholder="Add race/ethnicity">
                 <button>Add</button>
@@ -60,7 +62,7 @@
             <li><input type="text" value="{{hau.name}}" readonly></li>
         {% endfor %}
         <div>
-            <form action="/100devs/admin/create-heard" method="POST">
+            <form action="/100devs/admin/create-heard/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="new_heard" name="name" class="new_input" placeholder="Add how you heard about us">
                 <button>Add</button>
@@ -70,3 +72,7 @@
 </section>
 
 {% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/admin_page.js' %}"></script>
+{% endblock js %}

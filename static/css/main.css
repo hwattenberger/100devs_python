@@ -58,3 +58,7 @@ main {
 .adminCategory h2 {
     margin-bottom: .24rem;
 }
+
+.test {
+    color: green;
+}
