@@ -9,7 +9,7 @@
     <h2>Cohorts</h2>
     <ul>
         {% for cohort in cohorts %}
-            <li id="cohort-{{ cohort.id }}"><input type="text" value="{{cohort.name}}" class="editInput" readonly><span class="adminEdit">Edit</span></li>
+            <li id="cohort-{{ cohort.id }}"><input type="text" value="{{cohort.name}}" class="editInput" readonly><span class="adminEdit">Edit</span><span class="adminSave hide">Save</span></li>
         {% endfor %}
         <div>
             <form action="/100devs/admin/create-cohort/" method="POST">
@@ -26,7 +26,7 @@
     <h2>Genders</h2>
     <ul>
         {% for gender in genders %}
-            <li><input type="text" value="{{gender.name}}" readonly></li>
+        <li id="gender-{{ gender.id }}"><input type="text" value="{{gender.name}}" class="editInput" readonly><span class="adminEdit">Edit</span><span class="adminSave hide">Save</span></li>
         {% endfor %}
         <div>
             <form action="/100devs/admin/create-gender/" method="POST">
@@ -43,7 +43,7 @@
     <h2>Race & Ethnicities</h2>
     <ul>
         {% for re in race_ethnicity %}
-            <li><input type="text" value="{{re.name}}" readonly></li>
+        <li id="re-{{ re.id }}"><input type="text" value="{{re.name}}" class="editInput" readonly><span class="adminEdit">Edit</span><span class="adminSave hide">Save</span></li>
         {% endfor %}
         <div>
             <form action="/100devs/admin/create-race/" method="POST">
@@ -59,7 +59,7 @@
     <h2>How You Heard About Us</h2>
     <ul>
         {% for hau in hear_about_us %}
-            <li><input type="text" value="{{hau.name}}" readonly></li>
+        <li id="heard-{{ hau.id }}"><input type="text" value="{{hau.name}}" class="editInput" readonly><span class="adminEdit">Edit</span><span class="adminSave hide">Save</span></li>
         {% endfor %}
         <div>
             <form action="/100devs/admin/create-heard/" method="POST">

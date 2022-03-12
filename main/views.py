@@ -101,7 +101,7 @@ def assignment_create(request):
 
 def admin_cohort(request):
     if request.method == "POST":
-        name=request.POST.get('name')
+        name=request.POST.get('value')
         if name:
             Cohort.objects.create(
                 name=name
@@ -112,18 +112,11 @@ def admin_cohort(request):
     return redirect('admin')
 
 def admin_cohort_edit(request, id):
-    data_from_post = json.load(request)['test']
-    # if request.method == "POST":
-        # name=request.POST.get('name')
-        # if name:
-        #     Cohort.objects.create(
-        #         name=name
-        #     )
-        # else:
-    return HttpResponse(data_from_post)
-        # return HttpResponse("Success")
-
-    return redirect('admin')
+    data_from_post = json.load(request)['value']
+    cohort = Cohort.objects.get(id=id)
+    cohort.name = data_from_post
+    cohort.save(update_fields=['name'])
+    return HttpResponse("success")
 
 def admin_race_eth(request):
     if request.method == "POST":
@@ -135,7 +128,14 @@ def admin_race_eth(request):
         else:
             return HttpResponse("Not a valid name")
 
-    return redirect('admin') 
+    return redirect('admin')
+
+def admin_race_eth_edit(request, id):
+    data_from_post = json.load(request)['value']
+    re = RaceEthnicity.objects.get(id=id)
+    re.name = data_from_post
+    re.save(update_fields=['name'])
+    return HttpResponse("success")
 
 def admin_gender(request):
     if request.method == "POST":
@@ -149,6 +149,13 @@ def admin_gender(request):
 
     return redirect('admin') 
 
+def admin_gender_edit(request, id):
+    data_from_post = json.load(request)['value']
+    gender = Gender.objects.get(id=id)
+    gender.name = data_from_post
+    gender.save(update_fields=['name'])
+    return HttpResponse("success")
+
 def admin_heard(request):
     if request.method == "POST":
         name=request.POST.get('name')
@@ -160,6 +167,13 @@ def admin_heard(request):
             return HttpResponse("Not a valid name")
 
     return redirect('admin')
+
+def admin_heard_edit(request, id):
+    data_from_post = json.load(request)['value']
+    heard = HearAboutUs.objects.get(id=id)
+    heard.name = data_from_post
+    heard.save(update_fields=['name'])
+    return HttpResponse("success")
 
 def submit_assignment(request):
     if request.method == "POST":

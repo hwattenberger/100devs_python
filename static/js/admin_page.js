@@ -1,13 +1,25 @@
 const editBtn = document.querySelectorAll('.adminEdit');
+const saveBtn = document.querySelectorAll('.adminSave');
 const csrftoken = getCookie('csrftoken');
 
 editBtn.forEach(edit => edit.addEventListener('click', editClick));
+saveBtn.forEach(save => save.addEventListener('click', saveClick));
 
 function editClick(e) {
-    e.target.classList.add("test");
-    li = e.target.closest("li")
-    console.log(li.id)
-    fetch('/100devs/admin/cohort/1/', {
+    e.currentTarget.classList.add('hide');   //Hide edit button
+    const li = e.target.closest("li");
+    const save = li.querySelector(".adminSave");
+    save.classList.remove('hide');
+    const input = li.querySelector("input");
+    input.readOnly = false;
+}
+
+function saveClick(e) {
+    const li = e.target.closest("li")
+    const id = li.id.split('-')[1]
+    const what_to_save = li.id.split('-')[0]
+    const input = li.querySelector("input");
+    fetch(`/100devs/admin/${what_to_save}/${id}/`, {
         method: 'POST',
         credentials: 'same-origin',
         headers:{
@@ -15,10 +27,14 @@ function editClick(e) {
             'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
             'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({'test':'hii'})
+        body: JSON.stringify({'value': input.value})
         }
     ).then(res => {
-        console.log("WOAH")
+        const edit = li.querySelector(".adminEdit");
+        const save = li.querySelector(".adminSave");
+        edit.classList.remove('hide');
+        save.classList.add('hide');
+        input.readOnly = true;
     })
 }
 

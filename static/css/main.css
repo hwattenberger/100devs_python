@@ -59,6 +59,6 @@ main {
     margin-bottom: .24rem;
 }
 
-.test {
-    color: green;
+.hide {
+    display: none;
 }
