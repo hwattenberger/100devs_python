@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 import json
 
 from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment
-from .forms import StudentForm, AssignmentForm
+from .forms import StudentForm, AssignmentForm, AssignmentTurninForm
 
 # Create your views here.
 def admin(request):
@@ -179,13 +179,25 @@ def submit_assignment(request):
     if request.method == "POST":
         email=request.POST.get('email')
         assignment=request.POST.get('assignment')
+        link=request.POST.get('assignment')
+
+        try:
+            this_student=Student.objects.get(email=email)
+            this_assign=Assignment.objects.get(id=assignment)
+        except:
+            return HttpResponse("Not a valid student")
 
         StudentAssignment.objects.create(
-            name=name
+            student=this_student,
+            assignment=this_assign,
+            link=link
         )
         return redirect('admin') 
-        
+    
+    form = AssignmentTurninForm()
+    # assignments = Assignment.objects.all()
     context = {
-        "assignments": assignments
+        "form": form
+        # "assignments": assignments
     }
     return render(request, 'assignment-turnin.html', context)

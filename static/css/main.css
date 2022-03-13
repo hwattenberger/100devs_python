@@ -55,6 +55,10 @@ main {
     width: 20rem;
 }
 
+.adminCategory input:read-only {
+    color: lightslategray;
+}
+
 .adminCategory h2 {
     margin-bottom: .24rem;
 }
