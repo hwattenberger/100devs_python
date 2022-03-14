@@ -32,7 +32,6 @@ class General(models.Model):
 # https://docs.google.com/forms/d/e/1FAIpQLSdn3LASp742kqN3YhT-w6IUabl0oTW73V7W-zFIvIumB8si0w/viewform
 # Students
 class Student(models.Model):
-    #user
     cohort = models.ForeignKey(Cohort, on_delete=models.SET_NULL, blank=True, null=True)
     email = models.EmailField()
     first_name = models.CharField(max_length=100, blank=True, null=True)
@@ -55,12 +54,20 @@ class Student(models.Model):
     def __str__(self):
         return self.email
 
+def get_current_cohort():
+    gen = General.objects.get(id=1)
+    if gen:
+        return gen.current_cohort
+    return ""
+
 # Assignment - Assignment name, assignment description, class #, description of link
 class Assignment(models.Model):
     name = models.CharField(max_length=200)
+    test = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     class_num = models.CharField(max_length=100) #character just in case
     link_description = models.TextField()
+    cohort = models.ForeignKey(Cohort, on_delete=models.SET_NULL, null=True, default=get_current_cohort)
 
     def __str__(self):
         return self.name

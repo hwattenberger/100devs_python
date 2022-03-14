@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 import json
 
-from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment, General
+from .models import Student, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment, General, Assignment
 from .forms import StudentForm, AssignmentForm, AssignmentTurninForm
 
 # Create your views here.

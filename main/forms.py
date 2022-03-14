@@ -20,8 +20,8 @@ class AssignmentForm(forms.ModelForm):
         exclude = []
 
 class AssignmentTurninForm(forms.Form):
-    assignments = Assignment.objects.all()
-    # assignments = list(Assignment.objects.all())
+    # assignments = Assignment.objects.all()
+    assignments = list(Assignment.objects.all())
     assign_list = []
 
     for assignment in assignments:

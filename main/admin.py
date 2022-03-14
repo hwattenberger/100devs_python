@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Gender, RaceEthnicity, HearAboutUs, Cohort, Student, Assignment, StudentAssignment, General
+from .models import Gender, RaceEthnicity, HearAboutUs, Cohort, Student, StudentAssignment, General, Assignment
 
 # Register your models here.
 admin.site.register(Gender)
