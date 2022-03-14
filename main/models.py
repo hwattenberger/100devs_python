@@ -21,9 +21,13 @@ class HearAboutUs(models.Model):
 
 class Cohort(models.Model):
     name = models.CharField(max_length=300)
+    # current = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+
+class General(models.Model):
+    current_cohort = models.ForeignKey(Cohort, on_delete=models.SET_NULL, blank=True, null=True)
 
 # https://docs.google.com/forms/d/e/1FAIpQLSdn3LASp742kqN3YhT-w6IUabl0oTW73V7W-zFIvIumB8si0w/viewform
 # Students

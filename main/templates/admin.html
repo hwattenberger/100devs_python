@@ -9,7 +9,11 @@
     <h2>Cohorts</h2>
     <ul>
         {% for cohort in cohorts %}
-            <li id="cohort-{{ cohort.id }}"><input type="text" value="{{cohort.name}}" class="editInput" readonly><span class="adminEdit">Edit</span><span class="adminSave hide">Save</span></li>
+            <li id="cohort-{{ cohort.id }}">
+                <input type="text" value="{{cohort.name}}" class="editInput" readonly>
+                <!-- <input type="checkbox" class="checkDefault" disabled="disabled" {% if cohort.current%} checked {% endif %}> -->
+                <span class="adminEdit">Edit</span><span class="adminSave hide">Save</span>
+            </li>
         {% endfor %}
         <div>
             <form action="/100devs/admin/create-cohort/" method="POST">
@@ -20,6 +24,16 @@
         </div>
     </ul>
     <!-- <a href="">+ Add Cohort</a> -->
+    <h3>Current Cohort</h3>
+    <form action="/100devs/admin/current-cohort/" method="POST">
+        {% csrf_token %}
+        <select name="current_cohort">
+            {% for cohort in cohorts %}
+            <option value="{{cohort.id}}" {% if cohort.id == general.current_cohort.id %} selected {% endif %}>{{cohort.name}}</option>
+            {% endfor %}
+        </select>
+        <button>Update</button>
+    </form>
 </section>
 
 <section class="adminCategory">

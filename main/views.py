@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 import json
 
-from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment
+from .models import Student, Assignment, Cohort, Gender, RaceEthnicity, HearAboutUs, StudentAssignment, General
 from .forms import StudentForm, AssignmentForm, AssignmentTurninForm
 
 # Create your views here.
@@ -11,12 +11,14 @@ def admin(request):
     genders = Gender.objects.all()
     race_ethnicity = RaceEthnicity.objects.all()
     hear_about_us = HearAboutUs.objects.all()
+    general = General.objects.get(id=1)
 
     context = {
         "cohorts": cohorts,
         "genders": genders,
         "race_ethnicity": race_ethnicity,
-        "hear_about_us": hear_about_us
+        "hear_about_us": hear_about_us,
+        "general": general
     }
     return render(request, 'admin.html', context)
 
@@ -174,6 +176,15 @@ def admin_heard_edit(request, id):
     heard.name = data_from_post
     heard.save(update_fields=['name'])
     return HttpResponse("success")
+
+def admin_current_cohort(request):
+    if request.method == "POST":
+        current_cohort = Cohort.objects.get(id=request.POST.get('current_cohort'))
+        gen = General.objects.get_or_create(id=1)
+        gen[0].current_cohort=current_cohort
+        gen[0].save(update_fields=['current_cohort'])
+    return redirect('admin')
+
 
 def submit_assignment(request):
     if request.method == "POST":

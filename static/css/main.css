@@ -49,13 +49,13 @@ main {
     /* display: none; */
 }
 
-.adminCategory input {
+.adminCategory input[type=text] {
     margin: .25rem;
     padding: .25rem;
     width: 20rem;
 }
 
-.adminCategory input:read-only {
+.adminCategory input[type=text]:read-only {
     color: lightslategray;
 }
 
