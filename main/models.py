@@ -63,7 +63,7 @@ def get_current_cohort():
 # Assignment - Assignment name, assignment description, class #, description of link
 class Assignment(models.Model):
     name = models.CharField(max_length=200)
-    test = models.CharField(max_length=200)
+    # test = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     class_num = models.CharField(max_length=100) #character just in case
     link_description = models.TextField()

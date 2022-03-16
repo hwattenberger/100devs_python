@@ -64,10 +64,20 @@ def student_create(request):
     return render(request, 'student_create.html', context)
 
 def assignments(request):
-    assignments = Assignment.objects.all()
+    cohort_id = request.GET.get('cohort_id')
+    cohorts = Cohort.objects.all()
+
+    if cohort_id:
+        assignments = Assignment.objects.filter(cohort = cohort_id)
+        selected_cohort = cohort_id
+    else:
+        selected_cohort = General.objects.get(id=1).current_cohort
+        assignments = Assignment.objects.filter(cohort = selected_cohort)
 
     context = {
-        "assignments": assignments
+        "assignments": assignments,
+        "cohorts": cohorts,
+        "selected_cohort": selected_cohort
     }
     return render(request, 'assignments.html', context)
 
@@ -103,7 +113,7 @@ def assignment_create(request):
 
 def admin_cohort(request):
     if request.method == "POST":
-        name=request.POST.get('value')
+        name=request.POST.get('name')
         if name:
             Cohort.objects.create(
                 name=name

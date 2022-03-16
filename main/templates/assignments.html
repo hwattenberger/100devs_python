@@ -3,6 +3,15 @@
 {% block content %}
 <h1>Assignments</h1>
 <a href="{% url 'assignment-create' %}">Create</a>
+<form action="{% url 'assignments' %}" method="GET">
+    <select name="cohort_id">
+        {% for cohort in cohorts %}
+            <option value="{{cohort.id}}" {% if cohort.id == selected_cohort.id %} selected {% endif %}>{{cohort.name}}</option>
+        {% endfor %}
+    </select>
+    <button>Search</button>
+</form>
+
 <ul>
     {% for assignment in assignments %}
     <li>{{assignment.name}} <a href="{% url 'assignment-edit' assignment.id %}">Edit</a></li>
