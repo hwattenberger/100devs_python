@@ -1,6 +1,6 @@
 # from django.forms import ModelForm
 from django import forms
-from .models import Student, Assignment
+from .models import Student, Assignment, General
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -20,8 +20,8 @@ class AssignmentForm(forms.ModelForm):
         exclude = []
 
 class AssignmentTurninForm(forms.Form):
-    # assignments = Assignment.objects.all()
-    assignments = list(Assignment.objects.all())
+    current_cohort = General.objects.get(id=1).current_cohort
+    assignments = list(Assignment.objects.filter(cohort=current_cohort))
     assign_list = []
 
     for assignment in assignments:
@@ -29,4 +29,8 @@ class AssignmentTurninForm(forms.Form):
 
     email = forms.CharField(label='Your email address')
     assignment = forms.CharField(label='What assignment?', widget=forms.Select(choices=assign_list))
+    link = forms.CharField(label="Your link")
+
+class SingleAssignmentTurninForm(forms.Form):
+    email = forms.CharField(label='Your email address')
     link = forms.CharField(label="Your link")

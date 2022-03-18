@@ -21,4 +21,5 @@ urlpatterns = [
     path('100devs/admin/re/<str:id>/', views.admin_race_eth_edit, name="admin-race-edit"),
     path('100devs/admin/heard/<str:id>/', views.admin_heard_edit, name="admin-heard-edit"),
     path('submit_assignment/', views.submit_assignment, name="submit-assignment"),
+    path('submit_assignment/<str:assign_id>/', views.submit_specific_assignment, name="submit-assignment-single"),
 ]
