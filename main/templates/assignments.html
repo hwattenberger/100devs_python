@@ -2,8 +2,10 @@
 
 {% block content %}
 <h1>Assignments</h1>
-<a href="{% url 'assignment-create' %}">Create</a>
-<form action="{% url 'assignments' %}" method="GET">
+<a href="{% url 'assignment-create' %}" class="linkbtn">Create</a>
+
+<h2>Current Assignments</h2>
+<form action="{% url 'assignments' %}" method="GET" class="smallform">
     <select name="cohort_id">
         {% for cohort in cohorts %}
             <option value="{{cohort.id}}" {% if cohort.id == selected_cohort.id %} selected {% endif %}>{{cohort.name}}</option>

@@ -66,3 +66,36 @@ main {
 .hide {
     display: none;
 }
+
+.largeform li {
+    width: 100%;
+    margin: .5rem 0;
+}
+
+.largeform label {
+    width: 100%;
+}
+
+.largeform input,
+.largeform textarea,
+.largeform select {
+    width: 100%;
+    display: flex;
+}
+
+.largeform input[type=checkbox] {
+    width: 1rem;
+}
+
+.smallform {
+    margin-bottom: .5rem;
+}
+
+.linkbtn {
+    border: 1px solid black;
+    padding: .5rem 1rem;
+    margin: 1rem 0rem;
+    display: block;
+    text-align: center;
+    background-color: lightblue;
+}

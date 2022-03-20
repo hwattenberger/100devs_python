@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Students</h1>
-<a href="{% url 'student-create' %}">Create</a>
+<a href="{% url 'student-create' %}" class="linkbtn">Create</a>
 <ul>
     {% for student in students %}
     <li>{{student.email}} <a href="{% url 'student-edit' student.id %}">Edit</a></li>
